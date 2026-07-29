@@ -22,7 +22,7 @@ Multi-repo reviews that take a long time (5+ repositories) can lose all progress
 **Reproduction summary:**
 I reproduced the bug with `scripts/repro_agent_state_persistence.py`, which runs `Orchestrator` against Redis with slow mock tools and kills the process mid-plan. After the kill, Redis had no `session:repro-issue-47` key, and a fresh re-run executed every tool again from scratch — confirming mid-run progress lives only in memory and is not checkpointed to `SessionStore` until `run()` finishes.
 
-**PLAN.md link:** [link to PLAN.md in your fork]
+**PLAN.md link:** https://github.com/JaredAung/pathreview/blob/fix/agent-state-persistence/docs/PLAN.md
 
 **Blockers or open questions:**
-[Anything you're still uncertain about going into Week 9, or leave blank]
+N/A
