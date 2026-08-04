@@ -26,3 +26,33 @@ I reproduced the bug with `scripts/repro_agent_state_persistence.py`, which runs
 
 **Blockers or open questions:**
 N/A
+
+## Week 9 — Solution building & PR submission
+
+### Check-in 1 (mid-week)
+
+**Current progress:**
+Implemented mid-run Redis checkpointing and resume in `Orchestrator.run()` (`agent/orchestrator.py`): after each tool, session state is written under a `tool_name:input_hash` key, and a restarted run skips completed steps. Added `tests/unit/test_agent_state_persistence.py` (6 tests) and updated `scripts/repro_agent_state_persistence.py` to verify partial checkpoints + resume against Redis. PLAN.md items 1–4 are done; verified via unit tests and the repro script (`FIX VERIFIED`).
+
+**Next steps:**
+Open a draft PR from `fix/agent-state-persistence`, run full `make check` / `make test-unit`, and solicit draft PR feedback.
+
+**Blockers:**
+No Blockers. 
+---
+
+### Check-in 2 (end of week)
+
+**PR link:**
+
+**Branch:** `fix/agent-state-persistence`
+
+**What you built:**
+`Orchestrator.run()` now checkpoints each completed tool result to Redis immediately (keyed by tool name + input hash) instead of only at the end of the plan. On restart, it loads that session and skips already-finished steps so the review continues from the last checkpoint.
+
+**Tests added or updated:**
+`tests/unit/test_agent_state_persistence.py` — covers checkpoint-after-each-tool, resume skip, full-session no re-execution, no-store path, failed-tool checkpointing, and step-key input hashing. Also updated `scripts/repro_agent_state_persistence.py` as an end-to-end Redis verification of the fix.
+
+**Self-review confirmation:** [x] make check passes  [x] make test-unit passes
+
+**Draft PR feedback received from:**
