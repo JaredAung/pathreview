@@ -43,7 +43,7 @@ No Blockers.
 
 ### Check-in 2 (end of week)
 
-**PR link:**
+**PR link:** `https://github.com/ascherj/pathreview/pull/841`
 
 **Branch:** `fix/agent-state-persistence`
 
@@ -55,4 +55,4 @@ No Blockers.
 
 **Self-review confirmation:** [x] make check passes  [x] make test-unit passes
 
-**Draft PR feedback received from:**
+**Draft PR feedback received from:** none
