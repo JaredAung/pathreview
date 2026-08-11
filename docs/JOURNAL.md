@@ -38,12 +38,13 @@ Implemented mid-run Redis checkpointing and resume in `Orchestrator.run()` (`age
 Open a draft PR from `fix/agent-state-persistence`, run full `make check` / `make test-unit`, and solicit draft PR feedback.
 
 **Blockers:**
-No Blockers. 
+No blockers.
+
 ---
 
 ### Check-in 2 (end of week)
 
-**PR link:** `https://github.com/ascherj/pathreview/pull/841`
+**PR link:** https://github.com/ascherj/pathreview/pull/841
 
 **Branch:** `fix/agent-state-persistence`
 
@@ -53,6 +54,38 @@ No Blockers.
 **Tests added or updated:**
 `tests/unit/test_agent_state_persistence.py` — covers checkpoint-after-each-tool, resume skip, full-session no re-execution, no-store path, failed-tool checkpointing, and step-key input hashing. Also updated `scripts/repro_agent_state_persistence.py` as an end-to-end Redis verification of the fix.
 
-**Self-review confirmation:** [x] make check passes  [x] make test-unit passes
+**Self-review confirmation:** [ ] make check passes  [ ] make test-unit passes
+
+Note: Full `make check` / `make test-unit` fail on pre-existing repo issues unrelated to this PR. Issue #47 coverage passes via `pytest tests/unit/test_agent_state_persistence.py` (6/6) and `python scripts/repro_agent_state_persistence.py` (`FIX VERIFIED`).
 
 **Draft PR feedback received from:** none
+
+## Week 10 — Iteration & reflection
+
+### Reviewer feedback
+
+**Feedback received:** [ ] Yes  [x] No — still awaiting review
+
+**Summary of feedback:**
+No reviews yet.
+
+**How you responded:**
+
+---
+
+### Reflection
+
+**What was harder than you expected?**
+Recreating the bug was the hardest since there was no obvious way to simulate a mid-crash. So I had to write a dedicated script.
+
+**What did you learn about working in a large codebase?**
+It is harder to work with codebases that I didn't develop from scratch. It takes time to understand design decisions and how everything ties together.
+
+**How did AI tools help — and where did they fall short?**
+Used Claude to design the script and explain the problem.
+
+**What would you do differently if you started over?**
+Better planning would have reduced the time taken to finish each part.
+
+**What are you most proud of from this module?**
+The simulation script would be the part that I am most proud of since it surfaces the issue as well as sets up a foundation to test success on.
